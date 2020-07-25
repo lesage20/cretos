@@ -1,0 +1,59 @@
+{% extends 'account/main.html' %}
+
+
+{% block title %}
+    User Statistics
+{% endblock title %}
+
+
+{% block content %}
+    
+<br>
+        <div class="container">
+            {% include 'account/status.html' %}
+        </div>
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h5>Order  Info:</h5>
+            <hr>
+            <div class="card card-body">
+                
+                <table class="table table-sm">
+                    
+                    <tr>
+                        
+                        <th>Product</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Total</th>
+                        
+                        
+                    </tr>
+                    {% for item in items %}
+                        <tr>
+                            <td>{{item.produit.nom}}</td>
+                            <td>${{item.produit.prix}}</td>
+                            <td>{{item.quantity}}</td>
+                            <td>${{item.get_total_price}}</td>
+                            
+                            
+                  </tr>
+                    {%endfor%}
+        
+                </table>
+            </div>
+            <div>
+                <br>
+                
+                <a href="{% url 'customer' request.user.customer.id%}" class="btn btn-xs btn-info">My Customer Page</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+ <hr>
+{% endblock content %}

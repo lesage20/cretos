@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="row " style="padding-bottom: 10% ;">
+    <div class="container mb-5">
+        <div class="card card-body mb-auto">
+            <h2>Voici le resultat de votre recherche: </h2>
+            {% for article in articles %}
+                
+                {% if rien in article %}
+                    {{article}}
+
+                {%else%}
+                    <strong ><a href="{{article.get_absolute_url}}">{{article}}</a></strong> <br>
+                {% endif %}
+                    
+                
+            {% endfor %}
+                
+        </div>
+    </div>
+</div>
+
+
+{% endblock content %}

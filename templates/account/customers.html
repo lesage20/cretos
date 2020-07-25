@@ -1,0 +1,71 @@
+{% extends 'account/main.html' %}
+
+
+{% block title %}
+   Customer Page
+{% endblock title %}
+
+
+{% block content %}
+<br>
+<div class="container">
+    
+    {% comment %}
+        
+    {% endcomment %}
+        
+    <div class="row">
+        
+        <div class="col-md">
+            <div class="card card-body">
+                <h5>Contact Information</h5>
+                <hr>
+                <p>Email: {{customers.email}} </p>
+                <p>Phone: {{customers.phone}}</p>
+            </div>
+        </div>
+        <div class="col-md">
+            <div class="card card-body">
+                <h5>Total Order Products</h5>
+                <hr>
+                <h1 style="text-align: center; padding: 10px;">{{produit_total_command}} </h1>
+            </div>
+        </div>
+    </div>
+    <br>
+   
+    
+    {% for order in orders %}
+
+        <div class="row">
+            <div class="col-md">
+                <div class="card card-body">
+                    <h2>Commande {{order.id}}</h2>
+                    <table class="table table-md">
+                        <tr>
+                            <th> <h5>Product</h5></th>
+                            <th><h5>Date Ordered</h5></th>
+                            <th><h5>Quantity</h5></th>
+                            <th><h5>Unit Price</h5></th>
+                            <th><h5>Total Price</h5></th> 
+                        </tr>
+                        
+                        {% for item in items %}
+                        <tr>
+                            <td>{{item.produit.nom}}</td>
+                            <td>{{item.date_update}}</td>
+                            <td>{{item.quantity}}</td>
+                            <td>${{item.produit.prix}}</td>
+                            <td>${{item.get_total_price}}</td>
+                            
+                        </tr>
+                    {%endfor%}
+                    </table>
+                </div>
+            </div>
+        </div> 
+        <br>   
+    {% endfor %}
+</div>
+{% endblock content %}
+    

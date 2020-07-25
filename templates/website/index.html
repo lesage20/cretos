@@ -1,0 +1,461 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Creto - Shop {% endblock title%}
+
+
+{%block style%}
+<link rel="stylesheet" href="{% static 'assets/css/jquery-ui.css' %}">
+<link rel="stylesheet" href="{% static 'assets/css/nice-select.css' %}">
+<link rel="stylesheet" href="{% static 'assets/css/animate.css' %}">
+{%endblock style%}
+
+
+{% block content%}
+	<!-- =============== main-slider =============== -->
+	<section class="s-main-slider">
+		<div class="main-slide-navigation"></div>
+		<ul class="main-soc-list">
+			<li><a href="https://www.facebook.com/rovadex">facebook</a></li>
+			<li><a href="https://twitter.com/RovadexStudio">twitter</a></li>
+			<li><a href="https://www.instagram.com/rovadex/">instagram</a></li>
+		</ul>
+		{% for i in presentation %}		
+		<div class="main-slider">
+			<div class="main-slide">
+				<div class="main-slide-bg" style="background-image: url({{i.image}});"></div>
+				<div class="container">
+					<div class="main-slide-info">
+						
+						<h2 class="title">{{i.titre}}</h2>
+						<p>{{i.description}}</p>
+						<a href="{% url 'product' produit.id %}" class="btn"><span>buy now</span></a>
+					</div>
+					<div class="slide-img-cover">
+						<a href="{% url 'product' produit.id %}" class="lable-bike">
+							<div class="lable-bike-img"><img src="{{i.image.url}}" alt="img"></div>
+							<div class="lable-bike-item">
+								<div class="model">{{i.categorie}}</div>
+								<div class="price">{{i.prix}}</div>
+							</div>
+						</a>
+						<img src="{{i.image.url}}" alt="img" class="slide-img">
+					</div>
+				</div>
+			</div>
+			
+			
+			</div>
+		</div>
+		{% endfor%}
+		
+	</section>
+	<!-- ============= main-slider end ============= -->
+
+	<!--================ S-FIND-BIKE ================-->
+	{% for i in velo %}
+	<section class="s-find-bike">
+		<div class="container">
+			<form class="find-bike-form">
+				<h2 class="title">{{i.titre_velo}}</h2>
+				<ul class="form-wrap">
+					<li>
+						<label>Type</label>
+						<select class="nice-select">
+							<option selected="selected">{{i.category_product}}</option>
+							<option>Eddy Merckx</option>
+							<option>Specialized</option>
+							<option>Giant</option>
+							<option>Trek</option>
+							<option>BMC</option>
+						</select>
+					</li>
+					<li>
+						<label>Wheel Size</label>
+						<select class="nice-select">
+							<option selected="selected">{{i.taille}}</option>
+							<option>Eddy Merckx</option>
+							<option>Specialized</option>
+							<option>Giant</option>
+							<option>Trek</option>
+							<option>BMC</option>
+						</select>
+					</li>
+					<li>
+						<label>Brand</label>
+						<select class="nice-select">
+							<option selected="selected">{{i.marque}}</option>
+							<option>Eddy Merckx</option>
+							<option>Specialized</option>
+							<option>Giant</option>
+							<option>Trek</option>
+							<option>BMC</option>
+						</select>
+					</li>
+					<li><a href="{% url 'products' %}" class="btn"><span>search</span></a></li>
+				</ul>
+			</form>
+		</div>
+	</section>
+	{% endfor %}
+	<!--============== S-FIND-BIKE END ==============-->
+
+	<!--============== S-CATEGORY-BICYKLE ==============-->
+	{% for i in product %}
+	<section class="s-category-bicycle">
+		<div class="container">
+			<div class="slider-categ-bicycle">
+				<div class="slide-categ-bicycle">
+					<div class="categ-bicycle-item">
+						<img src="{{i.image.url}}" alt="category">
+						<div class="categ-bicycle-info">
+							<h4 class="title">{{i.titre}}</h4>
+							<a href="{% url 'products' %}" class="btn"><span>view more</span></a>
+						</div>
+					</div>
+				</div>
+				<div class="slide-categ-bicycle">
+					<div class="categ-bicycle-item">
+						<img src="{{i.image.url}}" alt="category">
+						<div class="categ-bicycle-info">
+							<h4 class="title">{{i.titre}}</h4>
+							<a href="{% url 'products' %}" class="btn"><span>view more</span></a>
+						</div>
+					</div>
+				</div>
+				<div class="slide-categ-bicycle">
+					<div class="categ-bicycle-item">
+						<img src="{% static 'assets/img/categ-1.png' %}" alt="category">
+						<div class="categ-bicycle-info">
+							<h4 class="title">{{i.titre}}</h4>
+							<a href="{% url 'products' %}" class="btn"><span>view more</span></a>
+						</div>
+					</div>
+				</div>
+				<div class="slide-categ-bicycle">
+					<div class="categ-bicycle-item">
+						<img src="{{i.image.url}}" alt="category">
+						<div class="categ-bicycle-info">
+							<h4 class="title">{{i.titre}}</h4>
+							<a href="{% url 'products' %}" class="btn"><span>view more</span></a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!--============ S-CATEGORY-BICYKLE END ============-->
+	{% endfor%}
+	<!--=============== S-OUR-ADVANTAGES ===============-->
+	<section class="s-our-advantages" style="background-image: url({% static 'assets/img/bg-advantages.jpg);">
+		<span class="mask"></span>
+		<div class="container">
+			<h2 class="title">Our Advantages</h2>
+			<div class="our-advantages-wrap">
+				<div class="our-advantages-item">
+					<img class="lazy" src="{% static 'assets/img/placeholder-all.png' %}" data-src="{% static 'assets/img/advantages-1.svg' %}" alt="icon">
+					<h5>Free shipping <br>from $500</h5>
+				</div>
+				<div class="our-advantages-item">
+					<img class="lazy" src="{% static 'assets/img/placeholder-all.png' %}" data-src="{% static 'assets/img/advantages-2.svg' %}" alt="icon">
+					<h5>Warranty service <br>for 3 months</h5>
+				</div>
+				<div class="our-advantages-item">
+					<img class="lazy" src="{% static 'assets/img/placeholder-all.png' %}" data-src="{% static 'assets/img/advantages-3.svg' %}" alt="icon">
+					<h5>Exchange and return <br>within 14 days</h5>
+				</div>
+				<div class="our-advantages-item">
+					<img class="lazy" src="{% static 'assets/img/placeholder-all.png' %}" data-src="{% static 'assets/img/advantages-4.svg' %}" alt="icon">
+					<h5>Discounts for <br>customers</h5>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!--============= S-OUR-ADVANTAGES END =============-->
+
+	<!--================== S-PRODUCTS ==================-->
+	
+	<section class="s-products">
+		<div class="container">
+			<div class="tab-wrap">
+				<div class="products-title-cover">
+					<h2 class="title">{{i.titre}}</h2>
+					<ul class="tab-nav product-tabs">
+						<li class="item" rel="tab1"><span>All</span></li>
+						<li class="item" rel="tab2"><span>Road bike</span></li>
+						<li class="item" rel="tab3"><span>City bike</span></li>
+						<li class="item" rel="tab4"><span>BMX bike</span></li>
+					</ul>
+				</div>
+				<div class="tabs-content">
+					<div class="tab tab1">
+						<div class="row product-cover">
+							{% for i in our_products %}
+							<div class="col-sm-6 col-lg-3">
+								<div class="product-item">
+									<span class="top-sale">top sale</span>
+									<ul class="product-icon-top">
+										<li><a href="#"><i class="fa fa-refresh" aria-hidden="true"></i></a></li>
+										<li><a href="#"><i class="fa fa-heart" aria-hidden="true"></i></a></li>
+									</ul>
+									<a href="{% url 'product' produit.id %}" class="product-img"><img class="lazy" src="{{i.image.url}}" data-src="{{i.image.url}}" alt="product"></a>
+									<div class="product-item-cover">
+										<div class="price-cover">
+											<div class="new-price">{{i.prix1}}f</div>
+											<div class="old-price">{{i.prix2}}f</div>
+										</div>
+										<h6 class="prod-title"><a href="{% url 'product' produit.id %}">{{i.description}}</a></h6>
+										<a href="{% url 'product' produit.id %}" class="btn"><span>buy now</span></a>
+									</div>
+									<div class="prod-info">
+										<ul class="prod-list">
+											<li> {{i.taille_du_cadre}}</li>	
+											<li>{{i.classe}} </li>
+											<li>{{i.nombre_de_vitesse}} </li>
+											<li>{{i.type_product}}</li>
+											<li>{{i.pays}} </li>
+										</ul>
+									</div>
+								</div>
+							</div>
+							{% endfor %}
+							
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!--================ S-PRODUCTS END ================-->
+
+
+	<!--================== S-TOP-SALE ==================-->
+	<section class="s-top-sale">
+		<div class="container">
+			<h2 class="title">Top sale</h2>
+			<div class="row product-cover">
+				{% for i in top %}
+				<div class="col-12 col-md-6 col-lg-4">
+					<div class="product-item">
+						<ul class="product-icon-top">
+							<li><a href="#"><i class="fa fa-refresh" aria-hidden="true"></i></a></li>
+							<li><a href="#"><i class="fa fa-heart" aria-hidden="true"></i></a></li>
+						</ul>
+						<a href="{% url 'product' produit.id %}" class="product-img"><img class="lazy" src="{{i.image.url}}" data-src="{{i.image.url}}" alt="product"></a>
+						<div class="product-item-cover">
+							<div class="price-cover">
+								<div class="new-price">{{i.prix1}}</div>
+								<div class="old-price">{{i.prix2}}</div>
+							</div>
+							<h6 class="prod-title"><a href="{% url 'product' produit.id %}">{{i.titre}}</a></h6>
+							<a href="{% url 'product' produit.id %}" class="btn"><span>buy now</span></a>
+						</div>
+						<div class="prod-info">
+							<ul class="prod-list">
+								<li>{{i.taille_du_cadre}}</li>
+								<li>{{i.classe}}</li>
+								<li>{{i.type_product}}</li>
+								<li>{{i.nombre_de_vitesse}}</li>
+								<li>{{i.pays}}</li>
+							</ul>
+						</div>
+					</div>
+				
+				</div>
+				{% endfor%}	
+			</div>
+		</div>
+	</section>
+	<!--================ S-TOP-SALE END ================-->
+
+	<!--================== S-FEEDBACK ==================-->
+	<section class="s-feedback" style="background-image: url({% static 'assets/img/bg-feedback.jpg);">
+		<span class="effwct-bg-feedback" style="background-image: url({% static 'assets/img/effect-bg-feedback.svg' %});"></span>
+		<span class="mask"></span>
+		<div class="container">
+			<h2 class="title">feedback</h2>
+			<div class="feedback-slider">
+				{% for i in feeback %}
+				<div class="feedback-slide">
+					<div class="feedback-item">
+						<div class="feedback-content">
+							<p>{{i.description}}</p>
+						</div>
+						<div class="feedback-item-top">
+							<img src="{{i.image.url}}" alt="photo">
+							<div class="feedback-title">
+								<h5 class="title">{{i.nom}}</h5>
+								<ul class="rating">
+									<li class="star-bg"><i class="fa fa-star" aria-hidden="true"></i></li>
+									<li class="star-bg"><i class="fa fa-star" aria-hidden="true"></i></li>
+									<li class="star-bg"><i class="fa fa-star" aria-hidden="true"></i></li>
+									<li class="star-bg"><i class="fa fa-star" aria-hidden="true"></i></li>
+									<li class="star-not-bg"><i class="fa fa-star-o" aria-hidden="true"></i></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+				{% endfor %}
+			</div>
+		</div>
+	</section>
+	<!--================ S-FEEDBACK END ================-->
+
+
+	<section class="s-our-news">
+		<div class="container">
+			
+			<h2 class="title">{{i.titre}}</h2>
+			<div class="news-cover row">
+				{% for i in news %}
+				<div class="col-12 col-md-6 col-lg-4">
+						<!--================== S-OUR-NEWS ==================-->
+					<div class="news-item">
+						<h6 class="title"><a href="news.html">{{i.titre}}</h6>
+						<div class="news-post-thumbnail">
+							<a href="news.html"><img class="lazy" src="{{i.image.url}}" data-src="{{i.image.url}}" alt="news"></a>
+						</div>
+						<div class="meta">
+							<span class="date"><i class="fa fa-calendar" aria-hidden="true"></i> {{i.date_add}}</span>
+							<span class="post-by"><i class="fa fa-user" aria-hidden="true"></i> By <a href="#">Samson</a></span>
+						</div>
+						<div class="post-content">
+							<p>{{i.description}}</p>
+						</div>
+						<a href="news.html" class="btn-news">read more</a>
+					</div>
+					
+				</div>
+				{% endfor%}
+			</div>
+			
+			<div class="btn-cover"><a class="btn" href="news.html"><span>view more</span></a></div>
+			
+		</div>
+	</section>
+	
+	<!--================ S-OUR-NEWS END ================-->
+
+	<!--=================== S-CLIENTS ===================-->
+	<section class="s-clients">
+		<div class="container">
+			<div class="clients-cover">
+				<div class="client-slide">
+					<div class="client-slide-cover">
+						<img src="{% static 'assets/img/client-1.svg' %}" alt="img">
+					</div>
+				</div>
+				<div class="client-slide">
+					<div class="client-slide-cover">
+						<img src="{% static 'assets/img/client-2.svg' %}" alt="img">
+					</div>
+				</div>
+				<div class="client-slide">
+					<div class="client-slide-cover">
+						<img src="{% static 'assets/img/client-4.svg' %}" alt="img">
+					</div>
+				</div>
+				<div class="client-slide">
+					<div class="client-slide-cover">
+						<img src="{% static 'assets/img/client-5.svg' %}" alt="img">
+					</div>
+				</div>
+				<div class="client-slide">
+					<div class="client-slide-cover">
+						<img src="{% static 'assets/img/client-6.svg' %}" alt="img">
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!--================= S-CLIENTS END =================-->
+
+	<!--=================== S-BANNER ===================-->
+	<section class="s-banner" style="background-image: url({% static 'assets/img/bg-section-banner.jpg);">
+		<span class="mask"></span>
+		<div class="banner-img">
+			<div class="banner-img-bg wow fadeIn" data-wow-duration=".6s" style="background-image: url({% static 'assets/img/effect-section-banner.svg' %});"></div>
+			<img class="lazy wow fadeInLeftBlur" data-wow-duration=".8s" data-wow-delay=".3s" src="{% static 'assets/img/placeholder-all.png' %}" data-src="{% static 'assets/img/bike-banner.png' %}" alt="img">
+		</div>
+		<div class="container">
+			<h2 class="title">Hyper E-Ride Bike 700C</h2>
+			<p class="slogan">Maecenas consequat ex id lobortis venenatis. Mauris id erat enim. Morbi dolor dolor, auctor tincidunt lorem.</p>
+			<div class="banner-price">
+				<div class="new-price">$1.699</div>
+				<div class="old-price">$1.799</div>
+			</div>
+			<div id="clockdiv">
+				<div>
+					<span class="days"></span>
+					<div class="smalltext">Days</div>
+				</div>
+				<div>
+					<span class="hours"></span>
+					<div class="smalltext">Hours</div>
+				</div>
+				<div>
+					<span class="minutes"></span>
+					<div class="smalltext">Minutes</div>
+				</div>
+				<div>
+					<span class="seconds"></span>
+					<div class="smalltext">Seconds</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!--================= S-BANNER END =================-->
+
+	<!--================== S-INSTAGRAM ==================-->
+	<section class="s-instagram">
+		<div class="instagram-cover">
+			<a href="#" class="instagram-item">
+				<ul>
+					<li class="comments">234 <i class="fa fa-comment-o" aria-hidden="true"></i></li>
+					<li class="like">134 <i class="fa fa-heart-o" aria-hidden="true"></i></li>
+				</ul>
+				<img class="lazy" src="{% static 'assets/img/placeholder-all.png' %}" data-src="{% static 'assets/img/instagram-1.jpg' %}" alt="img">
+			</a>
+			<a href="#" class="instagram-item">
+				<ul>
+					<li class="comments">222 <i class="fa fa-comment-o" aria-hidden="true"></i></li>
+					<li class="like">118 <i class="fa fa-heart-o" aria-hidden="true"></i></li>
+				</ul>
+				<img class="lazy" src="{% static 'assets/img/placeholder-all.png' %}" data-src="{% static 'assets/img/instagram-2.jpg' %}" alt="img">
+			</a>
+			<a href="#" class="instagram-item">
+				<ul>
+					<li class="comments">224 <i class="fa fa-comment-o" aria-hidden="true"></i></li>
+					<li class="like">124 <i class="fa fa-heart-o" aria-hidden="true"></i></li>
+				</ul>
+				<img class="lazy" src="{% static 'assets/img/placeholder-all.png' %}" data-src="{% static 'assets/img/instagram-3.jpg' %}" alt="img">
+			</a>
+			<a href="#" class="instagram-item">
+				<ul>
+					<li class="comments">155 <i class="fa fa-comment-o" aria-hidden="true"></i></li>
+					<li class="like">107 <i class="fa fa-heart-o" aria-hidden="true"></i></li>
+				</ul>
+				<img class="lazy" src="{% static 'assets/img/placeholder-all.png' %}" data-src="{% static 'assets/img/instagram-4.jpg' %}" alt="img">
+			</a>
+			<a href="#" class="instagram-item">
+				<ul>
+					<li class="comments">350 <i class="fa fa-comment-o" aria-hidden="true"></i></li>
+					<li class="like">140 <i class="fa fa-heart-o" aria-hidden="true"></i></li>
+				</ul>
+				<img class="lazy" src="{% static 'assets/img/placeholder-all.png' %}" data-src="{% static 'assets/img/instagram-5.jpg' %}" alt="img">
+			</a>
+		</div>
+	</section>
+	<!--================ S-INSTAGRAM END ================-->
+
+	<!--=================== SCRIPT	===================-->
+	{%block script%}
+	<script src="{% static 'assets/js/jquery.nice-select.js' %}"></script>
+	<script src="{% static 'assets/js/wow.js' %}"></script>
+	<script src="{% static 'assets/js/lazyload.min.js' %}"></script>
+
+	{%endblock script%}
+
+{%endblock content%}
