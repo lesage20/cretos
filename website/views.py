@@ -5,7 +5,8 @@ from shop.models import Produit
 from .forms import ContactForm
 # Create your views here.
 def index(request):
-    presentation = Presentation.objects.filter()[:1]
+    # presentation = Presentation.objects.filter()[:2]
+    slider = Sliders.objects.filter()[:1]
     velo = Trouver_le_velo.objects.filter()[:1]
     our_products = Our_products.objects.all()
     product = Category_product.objects.filter()[:1]
@@ -14,8 +15,9 @@ def index(request):
     news = News.objects.all()
     pub = Pub.objects.all()
     produit = Produit.objects.get(id=1)
-    data = {
-        'presentation':presentation,
+    print(slider)
+    datas = {
+        # 'presentation':presentation,
         'velo':velo,
         'product':product,
         'news':news,
@@ -23,11 +25,12 @@ def index(request):
         'top':top,
         'our_products':our_products,
         'feeback':feeback,
-        'produit':produit
+        'produit':produit,
+        'slider':slider
         
     }
     
-    return render(request, 'website/index.html', data)
+    return render(request, 'website/index.html', datas)
 
 def about(request):
     
@@ -45,9 +48,9 @@ def about(request):
 
 def contact(request):
 
-    presentation = Presentation.objects.filter(status=False).last
+    presentation = Presentation.objects.filter(status=True).last
     social = SocialAccount.objects.filter(status=True)[:4]
-
+    print(presentation)
     contact_form = ContactForm(request.POST or None)
     
     if request.method == 'POST':

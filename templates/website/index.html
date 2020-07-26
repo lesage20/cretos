@@ -20,13 +20,18 @@
 			<li><a href="https://twitter.com/RovadexStudio">twitter</a></li>
 			<li><a href="https://www.instagram.com/rovadex/">instagram</a></li>
 		</ul>
-		{% for i in presentation %}		
+		
+		
+		{% for i in slider %}
+			
+		
+			
 		<div class="main-slider">
 			<div class="main-slide">
+					
 				<div class="main-slide-bg" style="background-image: url({{i.image}});"></div>
 				<div class="container">
 					<div class="main-slide-info">
-						
 						<h2 class="title">{{i.titre}}</h2>
 						<p>{{i.description}}</p>
 						<a href="{% url 'product' produit.id %}" class="btn"><span>buy now</span></a>
@@ -42,12 +47,13 @@
 						<img src="{{i.image.url}}" alt="img" class="slide-img">
 					</div>
 				</div>
+				
 			</div>
 			
 			
 			</div>
 		</div>
-		{% endfor%}
+		{% endfor %}
 		
 	</section>
 	<!-- ============= main-slider end ============= -->
@@ -408,47 +414,8 @@
 	</section>
 	<!--================= S-BANNER END =================-->
 
-	<!--================== S-INSTAGRAM ==================-->
-	<section class="s-instagram">
-		<div class="instagram-cover">
-			<a href="#" class="instagram-item">
-				<ul>
-					<li class="comments">234 <i class="fa fa-comment-o" aria-hidden="true"></i></li>
-					<li class="like">134 <i class="fa fa-heart-o" aria-hidden="true"></i></li>
-				</ul>
-				<img class="lazy" src="{% static 'assets/img/placeholder-all.png' %}" data-src="{% static 'assets/img/instagram-1.jpg' %}" alt="img">
-			</a>
-			<a href="#" class="instagram-item">
-				<ul>
-					<li class="comments">222 <i class="fa fa-comment-o" aria-hidden="true"></i></li>
-					<li class="like">118 <i class="fa fa-heart-o" aria-hidden="true"></i></li>
-				</ul>
-				<img class="lazy" src="{% static 'assets/img/placeholder-all.png' %}" data-src="{% static 'assets/img/instagram-2.jpg' %}" alt="img">
-			</a>
-			<a href="#" class="instagram-item">
-				<ul>
-					<li class="comments">224 <i class="fa fa-comment-o" aria-hidden="true"></i></li>
-					<li class="like">124 <i class="fa fa-heart-o" aria-hidden="true"></i></li>
-				</ul>
-				<img class="lazy" src="{% static 'assets/img/placeholder-all.png' %}" data-src="{% static 'assets/img/instagram-3.jpg' %}" alt="img">
-			</a>
-			<a href="#" class="instagram-item">
-				<ul>
-					<li class="comments">155 <i class="fa fa-comment-o" aria-hidden="true"></i></li>
-					<li class="like">107 <i class="fa fa-heart-o" aria-hidden="true"></i></li>
-				</ul>
-				<img class="lazy" src="{% static 'assets/img/placeholder-all.png' %}" data-src="{% static 'assets/img/instagram-4.jpg' %}" alt="img">
-			</a>
-			<a href="#" class="instagram-item">
-				<ul>
-					<li class="comments">350 <i class="fa fa-comment-o" aria-hidden="true"></i></li>
-					<li class="like">140 <i class="fa fa-heart-o" aria-hidden="true"></i></li>
-				</ul>
-				<img class="lazy" src="{% static 'assets/img/placeholder-all.png' %}" data-src="{% static 'assets/img/instagram-5.jpg' %}" alt="img">
-			</a>
-		</div>
-	</section>
-	<!--================ S-INSTAGRAM END ================-->
+
+
 
 	<!--=================== SCRIPT	===================-->
 	{%block script%}

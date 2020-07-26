@@ -63,7 +63,7 @@ class SiteInfo(models.Model):
 class Presentation(models.Model):
     titre = models.CharField(max_length=255, null=True)
     description = models.TextField(null=True)
-    image = models.ImageField(upload_to="images/presentation", null=True)
+    image = models.ImageField(upload_to="images", null=True)
     
     prix = models.FloatField(null=True)
     categorie_product = models.ForeignKey(Category_product, on_delete=models.CASCADE, null=True)
@@ -74,8 +74,31 @@ class Presentation(models.Model):
     status = models.BooleanField(default=True)
 
     class Meta:
-        verbose_name = 'Presentation'
-        verbose_name_plural = 'Presentations'
+        verbose_name = 'presentation'
+        verbose_name_plural = 'presentations'
+        
+    def __str__(self):
+        return self.titre
+        
+        
+
+
+class Sliders(models.Model):
+    titre = models.CharField(max_length=255, null=True)
+    description = models.TextField(null=True)
+    image = models.ImageField(upload_to="images/sliders", null=True)
+    
+    price = models.FloatField(null=True)
+    categorie_product = models.ForeignKey(Category_product, on_delete=models.CASCADE, null=True)
+    
+
+    date_add = models.DateTimeField(auto_now_add=True)
+    date_update = models.DateTimeField(auto_now=True)
+    status = models.BooleanField(default=False)
+
+    class Meta:
+        verbose_name = 'slider'
+        verbose_name_plural = 'sliders'
 
     def __str__(self):
         return self.titre

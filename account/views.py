@@ -5,12 +5,12 @@ from .forms import OrderForm, CustomerForm, CreateUser
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import Group
-from .mydecorators import anonymous, allowed_users, admin_only
+from .mydecorators import anonymous, allowed_users
 
 from django.contrib import messages
 # Create your views here.
 @login_required(login_url='login')
-@admin_only
+
 def home(request):
     orders = Order.objects.all().order_by('-id')
     customers = Customer.objects.all()
@@ -118,21 +118,56 @@ def deleteOrder(request, pk):
 
 
 @anonymous
+def loginUser(request):
+
+    if request.method =='POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        
+        user = authenticate(request, username=username, password=password)
+        
+        if user is not None:
+            login(request, user)
+            return redirect('customer', id=request.user.customer.id)
+        else:
+            messages.warning(request, 'Password or Username may be incorrect')
+    
+    
+    datas = {
+        
+    }
+    return render(request, 'login.html')
+
+
+@anonymous
 def registerUser(request):
     form = CreateUser()
     
     if request.method == 'POST':
         form = CreateUser(request.POST)
-        if form.is_valid:
-            user = form.save()
-            username = form.cleaned_data.get('username')
-            messages.success(request, f'+ Account {username} successfully  created')
-            return redirect('home')
-    
+        try:
+            if form.is_valid:
+                user = form.save()
+                
+                
+                username = form.cleaned_data.get('username')
+                group = Group.objects.get(name='customers')
+                
+                user.groups.add(group)
+                Customer.objects.create(user=user, name=username, email=form.cleaned_data.get('email'))
+                messages.success(request, f'+ Account {username} successfully  created')
+                return redirect('home')
+            else:
+                messages.warning(request, 'Please validate the form befor being registered')
+        except ValueError:
+            
+            messages.error(request, 'You just entered wrong value')
+        
     
     datas={
         'form':form
     }
+
     return render(request, 'account/register.html', datas)
 
 @anonymous
@@ -146,7 +181,7 @@ def loginUser(request):
         
         if user is not None:
             login(request, user)
-            return redirect('home')
+            return redirect('customer', request.user.customer.id)
         else:
             messages.warning(request, 'Password or Username may be incorrect')
     

@@ -8,7 +8,7 @@ from .models import Customer
 @receiver(signal=post_save, sender=User)
 def create_profile(sender, instance, created, **kwargs):
     if created:
-        group = Group.objects.get(name='customer')
+        group = Group.objects.get(name='customers')
         instance.groups.add(group)
         Customer.objects.create(user=instance, name=instance.username, email=instance.email)
         print('profile created successfully')   

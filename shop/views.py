@@ -46,7 +46,7 @@ def products(request):
     produit = Produit.objects.filter(status=True)
 
     datas = {
-        "produit":produit
+        "produit":produit,
     }
 
 
